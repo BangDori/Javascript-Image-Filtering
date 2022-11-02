@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script async src="https://docs.opencv.org/3.4/opencv.js"></script>
     <style>
         body{
             padding: 0;
@@ -56,7 +57,7 @@
         }
 
         .content .filter-category>*{
-            width: 100px;
+            width: 128px;
             z-index: 1;
         }
 
@@ -121,9 +122,9 @@
         <div class="container">
             <div class="content">
                 <h2>이미지 입력</h2>
-                <input type="file" id="input_image" onchange="handleFiles(this.files)" accept="image/png, image/jpeg">
+                <input type="file" id="loadButton" accept="image/png, image/jpeg">
                 <div class="original-image-box">
-                    <img id="original_image" src="" alt="" width=480px height=480px>
+                  <canvas id="original" width="480" height="480"></canvas>
                 </div>
             </div>
 
@@ -131,19 +132,27 @@
                 <h2>이미지 필터링 결과</h2>
                 <div class="filter-category">
                   <div class="showing-filter" style="left: 0;"></div>
-                  <div class="">Mean</div>
-                  <div class="">Median</div>
+                  <div class="first-category">Mean(3*3)</div>
+                  <div class="">Mean(5*5)</div>
+                  <div class="">Median(3*3)</div>
+                  <div class="">Median(5*5)</div>
                   <div class="">Laplacian</div>
                 </div>
                 <div class="image-box">
                   <div class="mean-image-box showing-image">
-                    <img id="mean_image" class="filtered-image" src="" alt="" width=480px height=480px>
+                    <canvas id="mean3" width="480" height="480"></canvas>
+                  </div>
+                  <div class="mean-image-box right">
+                    <canvas id="mean5" width="480" height="480"></canvas>
                   </div>
                   <div class="median-image-box right">
-                    <img id="median_image" class="filtered-image" src="" alt="" width=480px height=480px>
+                    <canvas id="median3" width="480" height="480"></canvas>
+                  </div>
+                  <div class="median-image-box right">
+                    <canvas id="median5" width="480" height="480"></canvas>
                   </div>
                   <div class="laplacian-image-box right">
-                    <img id="laplacian_image" class="filtered-image" src="" alt="" width=480px height=480px>
+                    <canvas id="laplacian" width="480" height="480"></canvas>
                   </div>
                 </div>
 

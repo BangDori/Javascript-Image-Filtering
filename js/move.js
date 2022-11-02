@@ -6,6 +6,23 @@ const RIGHT = "right";
 const LEFT = "left";
 const SHOWING = "showing-image";
 
+$('#loadButton').on('change', function (e) {
+  let previous = document.querySelector(".showing-image");
+
+  while (previous.previousElementSibling != null) {
+    console.log("??");
+    let now = previous.previousElementSibling;
+
+    previous.classList.add(RIGHT);
+    previous.classList.remove(SHOWING);
+    now.classList.remove(LEFT);
+    now.classList.add(SHOWING);
+
+    previous = document.querySelector(".showing-image");
+    clicked_category.style.left = `${parseInt(clicked_category.style.left) - 128}px`;
+  }
+});
+
 function checkMove() {
   moves.forEach(move => {
     move.addEventListener("click", function() {
@@ -20,8 +37,7 @@ function checkMove() {
         now.classList.remove(LEFT);
         now.classList.add(SHOWING);
 
-        clicked_category.style.left = `${parseInt(clicked_category.style.left) - 100}px`;
-        console.log(clicked_category.style.left)
+        clicked_category.style.left = `${parseInt(clicked_category.style.left) - 128}px`;
       } else if(move.classList.contains("right-move")) {
         const previous = document.querySelector(".showing-image");
         const now = previous.nextElementSibling;
@@ -33,7 +49,7 @@ function checkMove() {
         now.classList.remove(RIGHT);
         now.classList.add(SHOWING);
 
-        clicked_category.style.left = `${parseInt(clicked_category.style.left) + 100}px`;
+        clicked_category.style.left = `${parseInt(clicked_category.style.left) + 128}px`;
       }
     })
   })
